@@ -1,0 +1,43 @@
+import org.gradle.internal.jvm.Jvm
+
+println "Using Gradle version: $gradle.gradleVersion"
+println "Compiling with: "+ Jvm.current()
+
+ext {
+    jarNumber = '1.0' //JIRA# MCH_ASSET_MANAGEMENT 552, 669, 682
+    dependencyKey = "$projectKey$jarType"
+    jarVersion = "$jarNumber$dependencyKey"
+
+    //Dependencies numbers
+    springBootVersion = '3.1.0'
+    springDependencyManagementVersion = '1.1.0'
+
+    mapstructVersion = '1.5.3.Final'
+    lombokMapstructVersion = '0.2.0'
+    jsonwebtokenVersion = '0.11.2'
+    logbackSMTPVersion = '2.0.1'
+    apachePoiVersion = '5.2.3'
+    jsonwebtokenVersion = '0.9.1'
+    xmlVersion = '2.3.1'
+
+    //Testing
+    jUnitVersion = '4.12'
+    mockitoVersion = '4.11.0'
+    fakeSMTPVersion = '6.0.5'
+
+    mockWebserverVersion = '4.9.0'
+}
+
+println "=========== MCH Artifact's versions ====================="
+println "jarVersion = $jarVersion"
+
+println "=========== Third party library's versions ============="
+println "springBootVersion = $springBootVersion"
+println "mapstructVersion = $mapstructVersion"
+println "lombokMapstructVersion = $lombokMapstructVersion"
+println "logbackSMTPVersion = $logbackSMTPVersion"
+println "apachePoiVersion = $apachePoiVersion"
+println "mockitoVersion = $mockitoVersion"
+println "fakeSMTPVersion = $fakeSMTPVersion"
+println "mockWebserverVersion = $mockWebserverVersion"
+

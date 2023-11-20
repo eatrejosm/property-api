@@ -1,0 +1,39 @@
+application:
+  title: MCH-CRM Scheduler Integration Testing Profile
+  support-email: tester@mycommunity.homes
+
+mch:
+  db-host: 111111
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:mch_data
+    jdbc-url: jdbc:h2:mem:mch_data
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  sql:
+    init:
+      continue-on-error: false
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+    show-sql: true
+
+
+cloud:
+  bucket:
+    name: mch-test-name
+  aws:
+    credentials:
+      access-key: xxxxxxxxrttttt
+      secret-key: zzzzzasadasdas
+    region:
+      static: us-east-2
+    stack:
+      auto: false

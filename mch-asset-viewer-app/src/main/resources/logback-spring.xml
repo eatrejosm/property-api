@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+    <!-- Override console log default pattern -->
+    <property name="CONSOLE_LOG_PATTERN" value="%clr(%d{-yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(-%5p) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %replace(C:%X{callerContext} R:%X{idRequest}){'[A-Z]+:( |$)',''} %m%n%wex}"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+    <logger name="mch.asset" level="INFO" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+</configuration>

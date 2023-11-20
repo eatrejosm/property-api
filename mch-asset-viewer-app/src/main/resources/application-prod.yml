@@ -1,0 +1,13 @@
+application:
+  title: ${appDescription} [prod]
+  env: PROD
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://172.31.28.203:3306/mch_data
+    username: web3
+    password: ${MCH_MYSQL_PWD}
+  jpa:
+    hibernate:
+      ddl-auto: none

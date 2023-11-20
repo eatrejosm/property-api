@@ -1,0 +1,76 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+buildscript {
+    apply from: 'versions.gradle'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'mch.service'
+    version = "$jarVersion"
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom SpringBootPlugin.BOM_COORDINATES
+        }
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        if (System.getProperty("os.arch") == "aarch64") {
+            runtimeOnly 'io.netty:netty-resolver-dns-native-macos:4.1.85.Final:osx-aarch_64'
+        }
+
+        //Logback email appender
+        runtimeOnly "org.eclipse.angus:angus-mail:${logbackSMTPVersion}"
+
+        /* **********  TEST DEPENDENCIES ****************** */
+        if (System.getProperty("os.arch") == "aarch64") {
+            testRuntimeOnly 'io.netty:netty-resolver-dns-native-macos:4.1.85.Final:osx-aarch_64'
+        }
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'io.projectreactor:reactor-test'
+        testImplementation "com.squareup.okhttp3:mockwebserver:${mockWebserverVersion}"
+
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+    }
+
+    task allDeps(type: DependencyReportTask)
+
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}
+
+

@@ -1,0 +1,20 @@
+application:
+  title: MCH-Property API Service >>>> DOCKER <<<<<<<
+  env: LOCAL-${user.name}
+
+mch:
+  db-host: host.docker.internal
+
+management:
+  endpoint:
+    env:
+      show-values: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    enabled-by-default: true
+
+logging:
+  level:
+    mch.asset: DEBUG

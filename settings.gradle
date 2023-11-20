@@ -1,0 +1,3 @@
+rootProject.name = 'mch-asset-management'
+include 'mch-asset-viewer-app'
+include 'mch-common-reactor-api'

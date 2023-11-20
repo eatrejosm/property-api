@@ -1,0 +1,10 @@
+application:
+  title: MCH-Property API Service >>>> LOCAL <<<<<<<
+  env: LOCAL-${user.name}
+
+mch:
+  db-host: localhost
+
+logging:
+  level:
+    mch.asset: DEBUG
