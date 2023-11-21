@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="users", schema = "mch_user")
+@Table(name="users", schema = "config")
 @Immutable
 @Builder
 @AllArgsConstructor
