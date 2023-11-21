@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MchPropertyRepository extends JpaRepository<MchProperty, Long> {
-
+    Page<MchProperty> findAll(Pageable pageable);
 
 }

@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.Immutable;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Immutable
-@Table(name="property", schema="mch_asset")
+@Table(name="properties", schema="config")
 @Data
 @SuppressWarnings("S1948")
 public class MchProperty implements Serializable {
@@ -23,13 +25,13 @@ public class MchProperty implements Serializable {
     private String propKey;
 
     @Column(name = "prop_value")
-    private String prop_value;
+    private String propValue;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "modified_at")
-    private Date modifiedAt;
+    private LocalDateTime  modifiedAt;
 
 
 }

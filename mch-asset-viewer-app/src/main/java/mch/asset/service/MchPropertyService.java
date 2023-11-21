@@ -12,8 +12,10 @@ import reactor.core.publisher.Mono;
 @Service
 @AllArgsConstructor
 public class MchPropertyService {
-    private static final String TRANSACTION_STATUS = "CLOSED";
     private final MchPropertyRepository mchPropertyRepository;
     private final ReactiveWrapperService reactiveWrapper;
 
+    public Mono<Page<MchProperty>> findAll(Pageable paging){
+        return reactiveWrapper.asyncMono(() -> mchPropertyRepository.findAll(paging));
+    }
 }
