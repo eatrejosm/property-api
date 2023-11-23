@@ -38,12 +38,25 @@ public class PropertiesController {
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
-            @RequestParam(defaultValue = "") String searchString
+            @RequestParam(defaultValue = "") String searchString,
+            @RequestParam(defaultValue = "") String searchBy
     ){
         Role userRole = userRoleService.getUserPermissions(token);
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         Mono<Page<MchProperty>> properties = Mono.empty();
-        properties = mchPropertyService.findAll(paging);
+
+        log.info("searchBy {}", searchBy);
+
+        if(searchBy.equals("profile")){
+            log.info("1 {}", searchString);
+            properties = mchPropertyService.findByProfile(searchString, paging);
+        } else if(searchBy.equals("application")){
+            log.info("2 {}", searchString);
+                properties = mchPropertyService.findByApplication(searchString, paging);
+        } else {
+            log.info("3 {}", searchString);
+            properties = mchPropertyService.findAll(paging);
+        }
 
         return properties.map(propertyPage -> {
             var propertyList = propertyPage.stream().map(propertyViewMapper::fromModel).toList();

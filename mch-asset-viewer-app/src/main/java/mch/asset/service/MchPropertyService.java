@@ -18,4 +18,10 @@ public class MchPropertyService {
     public Mono<Page<MchProperty>> findAll(Pageable paging){
         return reactiveWrapper.asyncMono(() -> mchPropertyRepository.findAll(paging));
     }
+    public Mono<Page<MchProperty>> findByProfile(String profile, Pageable paging){
+        return reactiveWrapper.asyncMono(() -> mchPropertyRepository.findByProfileContaining(profile, paging));
+    }
+    public Mono<Page<MchProperty>> findByApplication(String application, Pageable paging){
+        return  reactiveWrapper.asyncMono(() -> mchPropertyRepository.findByApplicationContaining(application, paging));
+    }
 }
